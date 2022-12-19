@@ -9,6 +9,8 @@ import aws_cdk as cdk
 from constructs import Construct
 import os
 
+IYARLES_DOMAIN = 'iyarles.net'
+IYARLES2_WEBSITE_DOMAIN = 'portfolio.' + IYARLES_DOMAIN
 
 class IYarles2Stack(Stack):
 
@@ -19,20 +21,19 @@ class IYarles2Stack(Stack):
         iyarles2_bucket = s3.Bucket(
             self,
             'IYarles2Bucket',
-            bucket_name='portfolio.iyarles2.com',
+            bucket_name=IYARLES2_WEBSITE_DOMAIN,
             removal_policy=cdk.RemovalPolicy.DESTROY,
             public_read_access=True,
             website_index_document='index.html',
         )
 
-        iyarles2_domain = iyarles2_bucket.bucket_website_domain_name
-
         # Get existing iyarles.net hosted zone
         iyarles_hosted_zone_id = os.environ['iyarles_hosted_zone_id']
-        iyarles_hosted_zone = route53.HostedZone.from_hosted_zone_id(
+        iyarles_hosted_zone = route53.HostedZone.from_hosted_zone_attributes(
             self,
-            'iyarles.net',
-            iyarles_hosted_zone_id,
+            IYARLES_DOMAIN,
+            hosted_zone_id=iyarles_hosted_zone_id,
+            zone_name=IYARLES_DOMAIN
         )
 
         # add alias record for static site
@@ -40,8 +41,17 @@ class IYarles2Stack(Stack):
             self,
             'IYarles2AliasRecord',
             zone=iyarles_hosted_zone,
-            record_name='portfolio.iyarles2.com',
+            record_name=IYARLES2_WEBSITE_DOMAIN,
             target=route53.RecordTarget.from_alias(
                 route53_targets.BucketWebsiteTarget(iyarles2_bucket)
             ),
         )
+
+        # output bucket website domain for use by next.config.js
+        iyarles2_url = iyarles2_bucket.bucket_website_url
+        out = cdk.CfnOutput(
+            self,
+            'bucketWebsiteUrl',
+            value=iyarles2_url,
+        )
+        # deploy with `cdk deploy --require-approval never --outputs-file cdk-outputs.json`

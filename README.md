@@ -41,3 +41,8 @@ Technical deets:
 * More to come (probably)!
 
 If you're interested in contributing, please feel free to open a PR!
+
+## TODO
+* Setup Github Actions
+* Use CloudFront to enable HTTPS
+* Actually make the website (currently "hello world")

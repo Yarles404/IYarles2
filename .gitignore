@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# secrets
+.env
+
 # aws cdk
 cdk-outputs.json
 *.swp
@@ -10,7 +13,6 @@ __pycache__
 Pipfile.lock
 .cdk.staging
 cdk.out
-
 
 # vscode
 .vscode

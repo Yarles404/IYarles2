@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 aws-cdk-lib = "*"
+autopep8 = "*"
 
 [dev-packages]
 

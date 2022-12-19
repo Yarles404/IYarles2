@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Who am I?
+I am Charles Yang, a software and rock climbing guy.
+My skills include:
+* Python
+* C# .NET, legacy or otherwise
+* Version Control
+* Github Actions
+* Various flavors of SQL
+* Various flavors of NoSQL (DynamoDB, etc)
+* RESTful APIs
+* AWS, including CDK for IaC
+* Basic front-end design & development
 
-## Getting Started
+Non-technical skills include:
+* Falling off anything harder than V6
+* Trad & Lead climbing
+* Hiking
+* Cooking (is this considered technical?)
 
-First, run the development server:
+Currently working at QCI, a software consulting firm in West Des Moines, IA. Subject to relatively relaxed non-compete. As of 12/18/2022, I am not seeking new employment but am willing to network!
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## What is this?
+This is the second edition of my personal website. I had some goals for this iteration:
+1. Learn fundamentals of Next.js
+2. Do some fun software architecture
+3. Exercise my existing skills
+4. Reduce the cost and complexity of my website
+5. Showcase myself
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Much of the technology used may be a little overkill. For example, I have yet to dive into Next.js' server-side capabilities. However, my goal wasn't to find the exactly correct tool for the job, but rather to learn and exercise my skills.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technical Bits for IYarles2
+* AWS CDK for IaC (Infrastructure as Code)
+* AWS S3 for storing assets and static website hosting
+* AWS Route53 for DNS
+* Next.js in TypeScript as framework for choice
+* Github Actions for CI/CD
+* AWS Lambda & API Gateway for serverless functions (contact page, etc)

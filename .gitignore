@@ -2,6 +2,15 @@
 
 # aws cdk
 cdk-outputs.json
+*.swp
+__pycache__
+.pytest_cache
+.venv
+*.egg-info
+Pipfile.lock
+.cdk.staging
+cdk.out
+
 
 # vscode
 .vscode

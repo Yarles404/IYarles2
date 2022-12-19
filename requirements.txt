@@ -1,0 +1,15 @@
+-i https://pypi.org/simple
+attrs==22.1.0
+aws-cdk-lib==2.51.1
+aws-cdk.asset-awscli-v1==2.2.17
+aws-cdk.asset-kubectl-v20==2.1.1
+aws-cdk.asset-node-proxy-agent-v5==2.0.23
+cattrs==22.2.0
+constructs==10.1.169
+exceptiongroup==1.0.4
+jsii==1.71.0
+publication==0.0.3
+python-dateutil==2.8.2
+six==1.16.0
+typeguard==2.13.3
+typing-extensions==4.4.0

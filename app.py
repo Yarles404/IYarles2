@@ -6,7 +6,7 @@ from IYarles2Stack.IYarles2Stack import IYarles2Stack
 
 app = cdk.App()
 
-aws_account_id = os.environ['aws_account_id']
+aws_account_id = os.environ['AWS_ACCOUNT_ID']
 IYarles2Stack(app, "IYarles2Stack",
               # If you don't specify 'env', this stack will be environment-agnostic.
               # Account/Region-dependent features and context lookups will not work,

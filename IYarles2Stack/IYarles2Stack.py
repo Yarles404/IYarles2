@@ -33,7 +33,7 @@ class IYarles2Stack(Stack):
         )
 
         # Get existing iyarles.net hosted zone
-        iyarles_hosted_zone_id = os.environ['iyarles_hosted_zone_id']
+        iyarles_hosted_zone_id = os.environ['IYARLES_HOSTED_ZONE_ID']
         iyarles_hosted_zone = route53.HostedZone.from_hosted_zone_attributes(
             self,
             IYARLES_DOMAIN,
@@ -42,7 +42,7 @@ class IYarles2Stack(Stack):
         )
 
         # Get existing ACM Cert for SSL
-        iyarles_cert_arn = os.environ['iyarles_cert_arn']
+        iyarles_cert_arn = os.environ['IYARLES_CERT_ARN']
         iyarles_cert = acm.Certificate.from_certificate_arn(
             self,
             'iyarles2Cert',

@@ -7,6 +7,8 @@ My skills include:
 * Github Actions
 * Various flavors of SQL
 * Various flavors of NoSQL (DynamoDB, etc)
+* ElasticSearch
+* Confluent Kafka
 * RESTful APIs
 * AWS, including CDK for IaC
 * Redimentary front-end design & development

@@ -36,7 +36,7 @@ Technical deets:
 * AWS Route53 for DNS
 * Next.js with TypeScript as framework of choice
 * Tailwind CSS for ***style***
-* Github Actions for CI/CD
+* Github Actions for automatic deployment
 * AWS Lambda & API Gateway for serverless functions (contact page, etc)
 * More to come (probably)!
 

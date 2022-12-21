@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 
-var cdkOutput = require('./cdk-outputs.json');
-var bucketWebsiteUrl = cdkOutput['IYarles2Stack']['websiteUrl'];
-console.log(bucketWebsiteUrl);
+var assetPrefix = undefined;
+if (process.env.ENVIRONMENT !== 'dev') {
+  var cdkOutput = require('./cdk-outputs.json');
+  assetPrefix = cdkOutput['IYarles2Stack']['websiteUrl'];
+}
+
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: bucketWebsiteUrl,
+  assetPrefix: assetPrefix,
 }
 
 module.exports = nextConfig

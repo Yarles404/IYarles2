@@ -80,4 +80,7 @@ class IYarles2Stack(Stack):
             'websiteUrl',
             value=f'https://{IYARLES2_WEBSITE_DOMAIN}',
         )
-        # deploy with `cdk deploy --require-approval never --outputs-file cdk-outputs.json`
+        # deploy with:
+        # cdk deploy --require-approval never --outputs-file cdk-outputs.json
+        # npm run build
+        # aws s3 sync out/ s3://portfolio.iyarles.net/

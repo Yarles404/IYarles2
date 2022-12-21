@@ -30,4 +30,3 @@ jobs:
 
       - name: sync portfolio.iyarles.net bucket
         run: aws s3 sync out/ s3://portfolio.iyarles.net/
-          

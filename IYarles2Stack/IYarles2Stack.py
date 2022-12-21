@@ -4,6 +4,9 @@ from aws_cdk import (
     aws_lambda as _lambda,
     aws_route53 as route53,
     aws_route53_targets as route53_targets,
+    aws_cloudfront as cloudfront,
+    aws_cloudfront_origins as origins,
+    aws_certificatemanager as acm,
 )
 import aws_cdk as cdk
 from constructs import Construct
@@ -11,6 +14,8 @@ import os
 
 IYARLES_DOMAIN = 'iyarles.net'
 IYARLES2_WEBSITE_DOMAIN = 'portfolio.' + IYARLES_DOMAIN
+# IYARLES2_WEBSITE_DOMAIN = 'test.' + IYARLES_DOMAIN
+
 
 class IYarles2Stack(Stack):
 
@@ -20,11 +25,11 @@ class IYarles2Stack(Stack):
         # Bucket holding site assets
         iyarles2_bucket = s3.Bucket(
             self,
-            'IYarles2Bucket',
+            'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
             removal_policy=cdk.RemovalPolicy.DESTROY,
             public_read_access=True,
-            website_index_document='index.html',
+            # website_index_document='index.html', // using S3 REST API w/ CloudFront instead of S3 website hosting
         )
 
         # Get existing iyarles.net hosted zone
@@ -36,6 +41,26 @@ class IYarles2Stack(Stack):
             zone_name=IYARLES_DOMAIN
         )
 
+        # ACM Cert for SSL
+        iyarles_cert = acm.Certificate(
+            self,
+            "iyarlse2Cert",
+            domain_name=IYARLES2_WEBSITE_DOMAIN,
+            certificate_name=IYARLES2_WEBSITE_DOMAIN,
+            validation=acm.CertificateValidation.from_dns(iyarles_hosted_zone)
+        )
+
+        # CloudFront distribution
+        iyarles_distribution = cloudfront.Distribution(
+            self,
+            "iyarles2Distribution",
+            default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(iyarles2_bucket)),
+            domain_names=[IYARLES2_WEBSITE_DOMAIN],
+            certificate=iyarles_cert,
+            price_class=cloudfront.PriceClass.PRICE_CLASS_100,
+            default_root_object='index.html',
+        )
+
         # add alias record for static site
         iyarles2_alias_record = route53.ARecord(
             self,
@@ -43,15 +68,14 @@ class IYarles2Stack(Stack):
             zone=iyarles_hosted_zone,
             record_name=IYARLES2_WEBSITE_DOMAIN,
             target=route53.RecordTarget.from_alias(
-                route53_targets.BucketWebsiteTarget(iyarles2_bucket)
+                route53_targets.CloudFrontTarget(iyarles_distribution)
             ),
         )
 
         # output bucket website domain for use by next.config.js
-        iyarles2_url = iyarles2_bucket.bucket_website_url
         out = cdk.CfnOutput(
             self,
-            'bucketWebsiteUrl',
-            value=iyarles2_url,
+            'websiteUrl',
+            value=f'https://{IYARLES2_WEBSITE_DOMAIN}',
         )
         # deploy with `cdk deploy --require-approval never --outputs-file cdk-outputs.json`

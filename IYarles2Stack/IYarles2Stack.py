@@ -65,8 +65,8 @@ class IYarles2Stack(Stack):
 
         # add alias record for static site
         iyarles2_cloudfront_target = route53.RecordTarget.from_alias(
-                route53_targets.CloudFrontTarget(iyarles_distribution)
-            )
+            route53_targets.CloudFrontTarget(iyarles_distribution)
+        )
         iyarles2_alias_record = route53.ARecord(
             self,
             'IYarles2AliasRecord',

@@ -1,4 +1,4 @@
-name: Deploy with AWS CDK
+name: Deploy with AWS CDK & S3 CLI
 on:
   push:
     branches:

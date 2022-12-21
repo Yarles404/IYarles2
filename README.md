@@ -41,6 +41,4 @@ Technical deets:
 * More to come (probably)!
 
 ## TODO
-* Setup Github Actions
-* Use CloudFront to enable HTTPS
 * Actually make the website (currently "hello world")

@@ -53,7 +53,10 @@ class IYarles2Stack(Stack):
         iyarles_distribution = cloudfront.Distribution(
             self,
             "iyarles2Distribution",
-            default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(iyarles2_bucket)),
+            default_behavior=cloudfront.BehaviorOptions(
+                origin=origins.S3Origin(iyarles2_bucket),
+                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            ),
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,

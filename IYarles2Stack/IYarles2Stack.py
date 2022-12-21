@@ -28,7 +28,7 @@ class IYarles2Stack(Stack):
             'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
             removal_policy=cdk.RemovalPolicy.DESTROY,
-            public_read_access=True,
+            # public_read_access=True,
             # website_index_document='index.html', // using S3 REST API w/ CloudFront instead of S3 website hosting
         )
 
@@ -41,13 +41,12 @@ class IYarles2Stack(Stack):
             zone_name=IYARLES_DOMAIN
         )
 
-        # ACM Cert for SSL
-        iyarles_cert = acm.Certificate(
+        # Get existing ACM Cert for SSL
+        iyarles_cert_arn = os.environ['iyarles_cert_arn']
+        iyarles_cert = acm.Certificate.from_certificate_arn(
             self,
-            "iyarlse2Cert",
-            domain_name=IYARLES2_WEBSITE_DOMAIN,
-            certificate_name=IYARLES2_WEBSITE_DOMAIN,
-            validation=acm.CertificateValidation.from_dns(iyarles_hosted_zone)
+            'iyarles2Cert',
+            certificate_arn=iyarles_cert_arn
         )
 
         # CloudFront distribution

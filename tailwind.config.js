@@ -17,6 +17,9 @@ module.exports = withMT({
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'filler-image': "url('/images/filler.png')",
+      }
     },
   },
   plugins: [],

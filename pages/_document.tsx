@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import IYarlesNavbar from './_navbar'
+import IYarlesNavbar from '../components/navbar'
 
 export default function Document() {
   return (

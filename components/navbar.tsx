@@ -47,8 +47,8 @@ export default function IYarlesNavbar() {
     );
 
     return (
-        <Navbar className="py-2 lg:py-4">
-            <div className="container flex items-center justify-between text-blue-gray-900">
+        <Navbar className="mx-auto max-w-screen-xl py-2 lg:py-4">
+            <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                 <Typography
                     as="a"
                     href="#"
@@ -62,6 +62,7 @@ export default function IYarlesNavbar() {
                     <span>Contact</span>
                 </Button>
                 <IconButton
+                    title="Menu"
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
                     ripple={false}

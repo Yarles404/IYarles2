@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import IYarlesNavbar from '../components/navbar'
 
 export default function Document() {
   return (
@@ -12,11 +11,7 @@ export default function Document() {
         />
       </Head>
       <body>
-        <div className="container">
-          <IYarlesNavbar />
-          <Main />
-        </div>
-
+        <Main />
 
         <NextScript />
         <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>

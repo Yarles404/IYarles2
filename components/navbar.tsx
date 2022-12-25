@@ -15,15 +15,6 @@ export default function IYarlesNavbar() {
         { name: "Github", href: "https://github.com/Yarles404" }
     ];
 
-    const [openNav, setOpenNav] = useState(false);
-
-    useEffect(() => {
-        window.addEventListener(
-          "resize",
-          () => window.innerWidth >= 960 && setOpenNav(false)
-        );
-      }, []);
-
     function navItem(name: string, href: string) {
         return (
             <Typography
@@ -46,6 +37,16 @@ export default function IYarlesNavbar() {
         </ul>
     );
 
+    const [openNav, setOpenNav] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener(
+            "resize",
+            () => window.innerWidth >= 960 && setOpenNav(false)
+        );
+    }, []);
+
+
     return (
         <Navbar className="mx-auto max-w-screen-xl py-2 lg:py-4">
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -57,7 +58,9 @@ export default function IYarlesNavbar() {
                 >
                     <span>IYarles</span>
                 </Typography>
-                <div className="hidden lg:block">{navList}</div>
+                <div className="hidden lg:block">
+                    {navList}
+                </div>
                 <Button variant="gradient" size="sm" className="hidden lg:inline-block">
                     <span>Contact</span>
                 </Button>
@@ -103,7 +106,7 @@ export default function IYarlesNavbar() {
             <MobileNav open={openNav}>
                 {navList}
                 <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                    <span>Buy Now</span>
+                    <span>Contact</span>
                 </Button>
             </MobileNav>
         </Navbar>

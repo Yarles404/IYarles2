@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 
 // Navbar borrowed from https://www.material-tailwind.com/docs/react/navbar
-export default function IYarlesNavbar() {
+export default function IYarlesNavbar(): JSX.Element {
     const navItems = [
         { name: "About", href: "/" },
         { name: "Resume", href: "/resume" },

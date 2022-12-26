@@ -12,10 +12,10 @@ export default function IYarlesNavbar(): JSX.Element {
     const navItems = [
         { name: 'About', href: '/' },
         { name: 'Resume', href: '/resume' },
-        { name: 'Github', href: 'https://github.com/Yarles404' }
+        { name: 'Github', href: 'https://github.com/Yarles404', target: '_blank' },
     ];
 
-    function navItem(name: string, href: string) {
+    function navItem(name: string, href: string, target?: string) {
         return (
             <Typography
                 as='li'
@@ -24,7 +24,7 @@ export default function IYarlesNavbar(): JSX.Element {
                 className='p-1 font-normal'
                 key={name}
             >
-                <a href={href} className='flex items-center'>
+                <a href={href} target={target} className='flex items-center'>
                     {name}
                 </a>
             </Typography>
@@ -33,7 +33,7 @@ export default function IYarlesNavbar(): JSX.Element {
 
     const navList = (
         <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
-            {navItems.map((item) => navItem(item.name, item.href))}
+            {navItems.map((item) => navItem(item.name, item.href, item.target))}
         </ul>
     );
 

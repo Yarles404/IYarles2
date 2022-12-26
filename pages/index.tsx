@@ -6,8 +6,8 @@ function Home() {
   return (
     <>
       <HomeHero />
-      <HomeArchitecture />
       <HomeEngineering />
+      <HomeArchitecture />
     </>
   )
 }

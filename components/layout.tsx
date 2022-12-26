@@ -1,12 +1,12 @@
 import IYarlesNavbar from './navbar'
 // import Footer from './footer'
 
-export default function HomeLayout({ children }: any): JSX.Element {
+export default function Layout({ children }: any): JSX.Element {
   return (
-    <>
+    <div className='container'>
       <IYarlesNavbar />
       <main>{children}</main>
       {/* <Footer /> */}
-    </>
+    </div>
   )
 }

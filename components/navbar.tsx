@@ -48,7 +48,7 @@ export default function IYarlesNavbar() {
 
 
     return (
-        <div className="container">
+        // <div className="container">
             <Navbar className="mx-auto">
                 <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                     <Typography
@@ -111,6 +111,6 @@ export default function IYarlesNavbar() {
                     </Button>
                 </MobileNav>
             </Navbar>
-        </div>
+        // </div>
     );
 }

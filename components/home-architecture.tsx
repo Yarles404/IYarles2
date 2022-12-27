@@ -6,7 +6,7 @@ export default function HomeArchitecture() {
             <div
                 className='absolute inset-0 bg-white/50 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/10'
             ></div>
-            <CardBody className='relative py-32 items-center lg:flex lg:h-screen lg:items-center lg:px-8'>
+            <CardBody className='relative py-32 items-center md:flex lg:h-screen md:items-center lg:px-8'>
                 {/* <div className='flex flex-row items-center w-full h-full'> */}
                 <div className='text-center sm:text-left'>
                     <h1 className='text-3xl font-extrabold sm:text-5xl text-deep-purple-700'>

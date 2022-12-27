@@ -6,7 +6,7 @@ export default function HomeEngineering() {
             <div
                 className='absolute inset-0 bg-white/10 sm:bg-transparent sm:bg-gradient-to-l sm:from-white/95 sm:to-white/10'
             ></div>
-            <CardBody className='relative py-32 lg:flex lg:h-screen lg:items-center lg:justify-end lg:px-8'>
+            <CardBody className='relative py-32 md:flex lg:h-screen md:items-center md:justify-end lg:px-8'>
                 <div className='text-center sm:text-right'>
                     <h1 className='text-3xl font-extrabold sm:text-5xl text-deep-purple-700'>
                         Software

@@ -3,7 +3,8 @@ import IYarlesNavbar from './navbar'
 
 export default function Layout({ children }: any): JSX.Element {
   return (
-    <div className='container'>
+    // <div className='container'>
+    <div>
       <IYarlesNavbar />
       <main>{children}</main>
       {/* <Footer /> */}

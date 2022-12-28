@@ -48,7 +48,7 @@ export default function IYarlesNavbar(): JSX.Element {
 
 
     return (
-        // <div className='container'>
+        <div className='container'>
             <Navbar className='my-2'>
                 <div className='container flex items-center justify-between text-blue-gray-900'>
                     <Typography
@@ -111,6 +111,6 @@ export default function IYarlesNavbar(): JSX.Element {
                     </Button>
                 </MobileNav>
             </Navbar>
-        // </div>
+        </div>
     );
 }

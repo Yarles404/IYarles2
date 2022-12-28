@@ -9,10 +9,7 @@ if (process.env.ENVIRONMENT !== 'dev') {
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: assetPrefix,
-  images: {
-    unoptimized: true,
-  },
+  assetPrefix: assetPrefix
 }
 
 module.exports = nextConfig

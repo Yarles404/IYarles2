@@ -4,7 +4,6 @@ import {
     CardBody,
     Typography
 } from '@material-tailwind/react'
-import Image from 'next/image'
 
 export default function HomeStack(): JSX.Element {
     return (
@@ -20,7 +19,7 @@ export default function HomeStack(): JSX.Element {
             <div className='grid justify-items-center sm:grid-cols-2 md:grid-cols-3 sm:gap-4'>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/nextjs.png' alt='next.js logo' fill />
+                        <img className='h-full w-full'  src='/images/nextjs.png' alt='next.js logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -33,7 +32,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/tailwind-css.png' alt='tailwind css logo' fill />
+                        <img className='h-full w-full' src='/images/tailwind-css.png' alt='tailwind css logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -46,7 +45,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/material-tailwind.png' alt='material tailwind logo' fill />
+                        <img className='h-full w-full' src='/images/material-tailwind.png' alt='material tailwind logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -59,7 +58,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/github-actions.png' alt='github actions logo' fill />
+                        <img className='h-full w-full' src='/images/github-actions.png' alt='github actions logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -72,7 +71,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/aws-cdk.png' alt='aws cdk logo' fill />
+                        <img className='h-full w-full' src='/images/aws-cdk.png' alt='aws cdk logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -85,7 +84,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/aws.png' alt='aws logo' fill />
+                        <img className='h-full w-full' src='/images/aws.png' alt='aws logo' />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>

@@ -33,7 +33,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/tailwind-css.png' alt='next.js logo' fill />
+                        <Image src='/../public/images/tailwind-css.png' alt='tailwind css logo' fill />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -46,7 +46,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/material-tailwind.png' alt='next.js logo' fill />
+                        <Image src='/../public/images/material-tailwind.png' alt='material tailwind logo' fill />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -59,7 +59,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/github-actions.png' alt='next.js logo' fill />
+                        <Image src='/../public/images/github-actions.png' alt='github actions logo' fill />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -72,7 +72,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/aws-cdk.png' alt='next.js logo' fill />
+                        <Image src='/../public/images/aws-cdk.png' alt='aws cdk logo' fill />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -85,7 +85,7 @@ export default function HomeStack(): JSX.Element {
                 </Card>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
-                        <Image src='/../public/images/aws.png' alt='next.js logo' fill />
+                        <Image src='/../public/images/aws.png' alt='aws logo' fill />
                     </CardHeader>
                     <CardBody className='text-center'>
                         <Typography variant='h4' color='blue-gray' className='mb-2'>

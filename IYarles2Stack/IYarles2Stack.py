@@ -49,6 +49,16 @@ class IYarles2Stack(Stack):
             certificate_arn=iyarles_cert_arn
         )
 
+        # CloudFront Lambda@Edge function
+        iyarles_viewer_request_lambda = cloudfront.experimental.EdgeFunction(
+            self,
+            'iyarles2ViewerRequestLambda',
+            code=_lambda.Code.from_asset('viewer_request_lambda'),
+            function_name='iyarles2-viewer-request',
+            handler='handler.lambda_handler',
+            runtime=_lambda.Runtime.PYTHON_3_9,
+        )
+
         # CloudFront distribution
         iyarles_distribution = cloudfront.Distribution(
             self,
@@ -56,6 +66,12 @@ class IYarles2Stack(Stack):
             default_behavior=cloudfront.BehaviorOptions(
                 origin=origins.S3Origin(iyarles2_bucket),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                edge_lambdas=[
+                    cloudfront.EdgeLambda(
+                        function_version=iyarles_viewer_request_lambda.current_version,
+                        event_type=cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
+                    )
+                ],
             ),
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,

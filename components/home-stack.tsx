@@ -16,7 +16,7 @@ export default function HomeStack(): JSX.Element {
                     </strong>
                 </h1>
             </div>
-            <div className='grid justify-items-center sm:grid-cols-2 md:grid-cols-3 sm:gap-4'>
+            <div className='grid justify-items-center lg:grid-cols-3 sm:gap-4'>
                 <Card className='w-96'>
                     <CardHeader floated={false} className='h-96'>
                         <img className='h-full w-full'  src='/images/nextjs.png' alt='next.js logo' />

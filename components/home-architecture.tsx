@@ -17,7 +17,7 @@ export default function HomeArchitecture() {
                             </strong>
                         </h1>
                         <p className='mt-4 bg-white rounded-xl max-w-lg sm:text-xl sm:leading-relaxed'>
-                            Analyzing requirements and creating cost-effective, scalable, and secure cloud solutions.
+                            Analyzing requirements and creating cost-effective, scalable, and secure cloud solutions
                         </p>
                     </div>
                 </CardBody>

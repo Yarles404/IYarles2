@@ -16,7 +16,7 @@ export default function HomeEngineering() {
                             </strong>
                         </h1>
                         <p className='mt-4 bg-white rounded-xl max-w-lg sm:text-xl sm:leading-relaxed'>
-                            Writing clean and maintainable code that gets the job done. Limit overhead and increase productivity.
+                            Writing clean and maintainable code that gets the job done. Limit overhead and increase productivity
                         </p>
                     </div>
                 </CardBody>

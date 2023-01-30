@@ -17,7 +17,7 @@ export default function HomePhilosophy() {
                             </strong>
                         </h1>
                         <p className='mt-4 bg-white rounded-xl max-w-lg sm:text-xl sm:leading-relaxed'>
-                            Questions I ask in every solution, project, and task.
+                            Questions I ask in every solution, project, and task
                         </p>
                     </div>
                 </CardBody>

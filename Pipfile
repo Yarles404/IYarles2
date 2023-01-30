@@ -19,6 +19,7 @@ python-dateutil = "==2.8.2"
 six = "==1.16.0"
 typeguard = "==2.13.3"
 typing-extensions = "==4.4.0"
+boto3 = "*"
 
 [dev-packages]
 

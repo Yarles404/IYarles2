@@ -32,6 +32,27 @@ class IYarles2Stack(Stack):
             # website_index_document='index.html', // using S3 REST API w/ CloudFront instead of S3 website hosting
         )
 
+        # Create contactEmailLambda
+        contact_email_lambda = _lambda.Function(
+            self,
+            'iyarles2ContactEmailLambda',
+            code=_lambda.Code.from_asset('contactEmailLambda'),
+            function_name='iyarles2-contact-email',
+            handler='contactEmailLambda.lambdaHandler',
+            runtime=_lambda.Runtime.NODEJS_18_X,
+        )
+
+        # give contactEmailLambda permission to send ses emails
+        contact_email_lambda.add_to_role_policy(
+            statement=cdk.aws_iam.PolicyStatement(
+                actions=[
+                    'ses:SendEmail',
+                    'ses:SendRawEmail',
+                ],
+                resources=['*'],
+            )
+        )
+
         # Get existing iyarles.net hosted zone
         iyarles_hosted_zone_id = os.environ['IYARLES_HOSTED_ZONE_ID']
         iyarles_hosted_zone = route53.HostedZone.from_hosted_zone_attributes(

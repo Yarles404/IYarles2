@@ -36,7 +36,7 @@ class IYarles2Stack(Stack):
         contact_email_lambda = _lambda.Function(
             self,
             'iyarles2ContactEmailLambda',
-            # code=_lambda.Code.from_asset('contactEmailLambda'),
+            code=_lambda.Code.from_asset('contactEmailLambda', exclude=['*.ts']),
             function_name='iyarles2-contact-email',
             handler='contactEmailLambda.lambdaHandler',
             runtime=_lambda.Runtime.NODEJS_18_X,

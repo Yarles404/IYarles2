@@ -38,7 +38,7 @@ jobs:
         run: zip contactEmailLambda.zip contactEmailLambda/contactEmailLambda.js
 
       - name: aws lambda update-function-code
-        run: aws lambda update-function-code --function-name contactEmailLambda --zip-file fileb://contactEmailLambda.zip
+        run: aws lambda update-function-code --function-name iyarles2-contact-email --zip-file fileb://contactEmailLambda.zip
 
       - name: sync portfolio.iyarles.net bucket
         run: aws s3 sync out/ s3://portfolio.iyarles.net/

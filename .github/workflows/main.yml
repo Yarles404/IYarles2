@@ -28,5 +28,17 @@ jobs:
       - name: build
         run: npm run build
 
+      - name: compile lambda
+        run: npx tsc contactEmailLambda/contactEmailLambda.ts
+
+      - name: install zip utility
+        run: sudo apt-get install zip
+
+      - name: zip transpiled contactEmailLambda.js
+        run: zip contactEmailLambda.zip contactEmailLambda/contactEmailLambda.js
+
+      - name: aws lambda update-function-code
+        run: aws lambda update-function-code --function-name contactEmailLambda --zip-file fileb://contactEmailLambda.zip
+
       - name: sync portfolio.iyarles.net bucket
         run: aws s3 sync out/ s3://portfolio.iyarles.net/

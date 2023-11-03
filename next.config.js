@@ -9,7 +9,9 @@ if (process.env.ENVIRONMENT !== 'dev') {
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: assetPrefix
+  assetPrefix: assetPrefix,
+  output: 'export',
+  trailingSLash: true
 }
 
 module.exports = nextConfig

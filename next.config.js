@@ -8,10 +8,11 @@ if (process.env.ENVIRONMENT !== 'dev') {
 
 
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
   assetPrefix: assetPrefix,
-  output: 'export',
-  trailingSlash: true
+  trailingSlash: true,
+  distDir: 'out'
 }
 
 module.exports = nextConfig

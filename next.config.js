@@ -12,7 +12,6 @@ const nextConfig = {
   reactStrictMode: true,
   assetPrefix: assetPrefix,
   trailingSlash: true,
-  distDir: 'out'
 }
 
 module.exports = nextConfig

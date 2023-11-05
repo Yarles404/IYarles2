@@ -30,6 +30,7 @@ class IYarles2Stack(Stack):
             removal_policy=cdk.RemovalPolicy.DESTROY,
             website_index_document='index.html',
         )
+        bucket.grant_public_access()
 
         # Create contactEmailLambda
         contact_email_lambda = _lambda.Function(

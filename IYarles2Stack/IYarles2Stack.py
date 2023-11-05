@@ -79,9 +79,6 @@ class IYarles2Stack(Stack):
         distribution = cloudfront.Distribution(
             self,
             "iyarles2Distribution",
-            default_behavior=cloudfront.BehaviorOptions(
-                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            ),
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,

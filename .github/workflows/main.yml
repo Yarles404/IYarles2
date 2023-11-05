@@ -45,7 +45,7 @@ jobs:
           IYARLES_CERT_ARN: ${{ secrets.IYARLES_CERT_ARN }}
   DeployAssets:
     needs: DeployInfrastructure
-    if: ${{ always() && contains(needs.DeployInfrastructure.result, fromJSON('["success", "skipped"]')) }}
+    if: ${{ always() && contains(fromJSON('["success", "skipped"]'), needs.DeployInfrastructure.result) }}
     runs-on: ubuntu-latest
     environment: main
     steps:

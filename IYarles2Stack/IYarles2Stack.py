@@ -28,7 +28,7 @@ class IYarles2Stack(Stack):
             'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
             access_control=s3.BucketAccessControl.PRIVATE,
-            removal_policy=cdk.RemovalPolicy.DESTROY,
+            removal_policy=cdk.RemovalPolicy.DESTROY
         )
 
         # Create contactEmailLambda
@@ -79,6 +79,12 @@ class IYarles2Stack(Stack):
         distribution = cloudfront.Distribution(
             self,
             "iyarles2Distribution",
+            default_behavior=cloudfront.BehaviorOptions(
+                origin=origins.HttpOrigin(
+                    domain_name=bucket.bucket_website_domain_name,
+                ),
+                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            ),
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,

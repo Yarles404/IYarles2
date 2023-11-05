@@ -94,7 +94,7 @@ class IYarles2Stack(Stack):
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,
-            default_root_object='index.html',
+            # default_root_object='index.html',
         )
 
         # add alias record for static site

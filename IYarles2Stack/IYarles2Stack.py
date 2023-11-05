@@ -28,7 +28,8 @@ class IYarles2Stack(Stack):
             'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
             access_control=s3.BucketAccessControl.PRIVATE,
-            removal_policy=cdk.RemovalPolicy.DESTROY
+            removal_policy=cdk.RemovalPolicy.DESTROY,
+            website_index_document='index.html',
         )
 
         # Create contactEmailLambda
@@ -88,13 +89,6 @@ class IYarles2Stack(Stack):
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,
-        )
-
-        s3_deployment.BucketDeployment(
-            self,
-            'iyarles2BucketDeployment',
-            destination_bucket=bucket,
-            distribution=distribution,
         )
 
         # add alias record for static site

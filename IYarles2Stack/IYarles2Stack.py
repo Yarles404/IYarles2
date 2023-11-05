@@ -7,7 +7,6 @@ from aws_cdk import (
     aws_cloudfront as cloudfront,
     aws_cloudfront_origins as origins,
     aws_certificatemanager as acm,
-    aws_s3_deployment as s3_deployment,
 )
 import aws_cdk as cdk
 from constructs import Construct
@@ -27,7 +26,7 @@ class IYarles2Stack(Stack):
             self,
             'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
-            access_control=s3.BucketAccessControl.PRIVATE,
+            access_control=s3.BucketAccessControl.PUBLIC_READ,
             removal_policy=cdk.RemovalPolicy.DESTROY,
             website_index_document='index.html',
         )
@@ -70,11 +69,6 @@ class IYarles2Stack(Stack):
             'iyarles2Cert',
             certificate_arn=iyarles_cert_arn
         )
-
-        # Let CloudFront read from the bucket
-        origin_access_identity = cloudfront.OriginAccessIdentity(
-            self, 'iyarles2OriginAccessIdentity')
-        bucket.grant_read(origin_access_identity)
 
         # CloudFront distribution
         distribution = cloudfront.Distribution(

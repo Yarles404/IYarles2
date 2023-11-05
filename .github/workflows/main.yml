@@ -44,8 +44,8 @@ jobs:
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
           IYARLES_CERT_ARN: ${{ secrets.IYARLES_CERT_ARN }}
   DeployAssets:
-    if: ${{ always() }}
     needs: DeployInfrastructure
+    if: ${{ always() && contains(needs.DeployInfrastructure.result, fromJSON('["success", "skipped"]')) }}
     runs-on: ubuntu-latest
     environment: main
     steps:

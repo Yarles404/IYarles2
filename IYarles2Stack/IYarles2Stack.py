@@ -7,6 +7,7 @@ from aws_cdk import (
     aws_cloudfront as cloudfront,
     aws_cloudfront_origins as origins,
     aws_certificatemanager as acm,
+    aws_s3_deployment as s3_deployment,
 )
 import aws_cdk as cdk
 from constructs import Construct
@@ -22,10 +23,11 @@ class IYarles2Stack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Bucket holding site assets
-        iyarles2_bucket = s3.Bucket(
+        bucket = s3.Bucket(
             self,
             'iyarles2Bucket',
             bucket_name=IYARLES2_WEBSITE_DOMAIN,
+            access_control=s3.BucketAccessControl.PRIVATE,
             removal_policy=cdk.RemovalPolicy.DESTROY,
         )
 
@@ -33,7 +35,8 @@ class IYarles2Stack(Stack):
         contact_email_lambda = _lambda.Function(
             self,
             'iyarles2ContactEmailLambda',
-            code=_lambda.Code.from_asset('contactEmailLambda', exclude=['*.ts']),
+            code=_lambda.Code.from_asset(
+                'contactEmailLambda', exclude=['*.ts']),
             function_name='iyarles2-contact-email',
             handler='contactEmailLambda.lambdaHandler',
             runtime=_lambda.Runtime.NODEJS_18_X,
@@ -67,41 +70,36 @@ class IYarles2Stack(Stack):
             certificate_arn=iyarles_cert_arn
         )
 
-        # CloudFront Lambda@Edge function
-        # iyarles_viewer_request_lambda = cloudfront.experimental.EdgeFunction(
-        #     self,
-        #     'iyarles2ViewerRequestLambda',
-        #     code=_lambda.Code.from_asset('viewer_request_lambda'),
-        #     function_name='iyarles2-viewer-request',
-        #     handler='handler.lambda_handler',
-        #     runtime=_lambda.Runtime.PYTHON_3_9,
-        # )
+        # Let CloudFront read from the bucket
+        origin_access_identity = cloudfront.OriginAccessIdentity(
+            self, 'iyarles2OriginAccessIdentity')
+        bucket.grant_read(origin_access_identity)
 
         # CloudFront distribution
-        iyarles_distribution = cloudfront.Distribution(
+        distribution = cloudfront.Distribution(
             self,
             "iyarles2Distribution",
             default_behavior=cloudfront.BehaviorOptions(
-                origin=origins.S3Origin(iyarles2_bucket),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-                # edge_lambdas=[
-                #     cloudfront.EdgeLambda(
-                #         function_version=iyarles_viewer_request_lambda.current_version,
-                #         event_type=cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
-                #     )
-                # ],
             ),
             domain_names=[IYARLES2_WEBSITE_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,
-            # default_root_object='index.html',
+        )
+
+        s3_deployment.BucketDeployment(
+            self,
+            'iyarles2BucketDeployment',
+            destination_bucket=bucket,
+            distribution=distribution,
         )
 
         # add alias record for static site
         iyarles2_cloudfront_target = route53.RecordTarget.from_alias(
-            route53_targets.CloudFrontTarget(iyarles_distribution)
+            route53_targets.CloudFrontTarget(distribution)
         )
-        iyarles2_alias_record = route53.ARecord(
+
+        route53.ARecord(
             self,
             'IYarles2AliasRecord',
             zone=iyarles_hosted_zone,
@@ -109,7 +107,7 @@ class IYarles2Stack(Stack):
             target=iyarles2_cloudfront_target,
         )
 
-        iyarles2_alias_record = route53.ARecord(
+        route53.ARecord(
             self,
             'IYarles2RootAliasRecord',
             zone=iyarles_hosted_zone,
@@ -118,12 +116,8 @@ class IYarles2Stack(Stack):
         )
 
         # output bucket website domain for use by next.config.js
-        out = cdk.CfnOutput(
+        cdk.CfnOutput(
             self,
             'websiteUrl',
             value=f'https://{IYARLES2_WEBSITE_DOMAIN}',
         )
-        # deploy with:
-        # cdk deploy --require-approval never --outputs-file cdk-outputs.json
-        # npm run build
-        # aws s3 sync out/ s3://portfolio.iyarles.net/

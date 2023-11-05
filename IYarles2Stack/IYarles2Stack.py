@@ -78,6 +78,7 @@ class IYarles2Stack(Stack):
             default_behavior=cloudfront.BehaviorOptions(
                 origin=origins.HttpOrigin(
                     domain_name=bucket.bucket_website_domain_name,
+                    protocol_policy=cloudfront.OriginProtocolPolicy.HTTP_ONLY
                 ),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             ),

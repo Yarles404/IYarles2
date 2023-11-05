@@ -7,7 +7,45 @@ permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
 jobs:
-  Deploy:
+  DeployInfrastructure:
+    if: ${{ contains(github.event.head_commit.message, '[infra]') }}
+    runs-on: ubuntu-latest
+    environment: infra
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::342755627552:role/IYarles2GithubActionsOidcRole
+          role-session-name: DeployIYarles2RoleSession
+          aws-region: us-east-1
+
+      - uses: actions/setup-node@v3
+        with:
+          check-latest: true
+
+      # Install AWS CDK
+      - run: npm install -g aws-cdk
+
+      # Setup Python 3.10
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: python -m pip install --upgrade pip
+
+      # Install requirements
+      - run: pip install -r requirements.txt
+
+      # Deploy with CDK
+      - run: cdk deploy --require-approval never --outputs-file cdk-outputs.json
+        env:
+          IYARLES_HOSTED_ZONE_ID: ${{ secrets.IYARLES_HOSTED_ZONE_ID }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          IYARLES_CERT_ARN: ${{ secrets.IYARLES_CERT_ARN }}
+  DeployAssets:
+    if: ${{ always() }}
+    needs: DeployInfrastructure
     runs-on: ubuntu-latest
     environment: main
     steps:

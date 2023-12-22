@@ -11,7 +11,7 @@ import {
 export default function IYarlesNavbar(): JSX.Element {
     const navItems = [
         { name: 'About', href: '/' },
-        { name: 'Resume', href: '/resume' },
+        { name: 'Resume', href: '/resume.pdf' },
         { name: 'Github', href: 'https://github.com/Yarles404', target: '_blank' },
     ];
 

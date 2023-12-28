@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 export default function Document() {
   return (
@@ -12,10 +13,10 @@ export default function Document() {
       </Head>
       <body>
         <Main />
-
         <NextScript />
-        <script src='https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js'></script>
-        <script src='https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js'></script>
+
+        <Script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></Script>
+        <Script src='https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js'></Script>
       </body>
     </Html>
   )

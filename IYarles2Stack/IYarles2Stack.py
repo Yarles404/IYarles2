@@ -105,7 +105,7 @@ class IYarles2Stack(Stack):
             'IYarles2RootAliasRecord',
             zone=iyarles_hosted_zone,
             record_name=IYARLES_DOMAIN,
-            target=iyarles2_cloudfront_target,
+            target=IYARLES2_WEBSITE_DOMAIN,
         )
 
         # output bucket website domain for use by next.config.js

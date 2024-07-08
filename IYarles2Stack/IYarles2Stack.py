@@ -87,11 +87,12 @@ class IYarles2Stack(Stack):
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,
         )
 
-        # add alias record for static site
+        # record target to alias to cloudfront distribution
         iyarles2_cloudfront_target = route53.RecordTarget.from_alias(
             route53_targets.CloudFrontTarget(distribution)
         )
 
+        # for subdomain
         route53.ARecord(
             self,
             'IYarles2AliasRecord',
@@ -100,6 +101,7 @@ class IYarles2Stack(Stack):
             target=iyarles2_cloudfront_target,
         )
 
+        # for root domain
         route53.ARecord(
             self,
             'IYarles2RootAliasRecord',

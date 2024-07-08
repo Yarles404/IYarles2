@@ -82,7 +82,7 @@ class IYarles2Stack(Stack):
                 ),
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             ),
-            domain_names=[IYARLES2_WEBSITE_DOMAIN],
+            domain_names=[IYARLES2_WEBSITE_DOMAIN, IYARLES_DOMAIN],
             certificate=iyarles_cert,
             price_class=cloudfront.PriceClass.PRICE_CLASS_100,
         )
